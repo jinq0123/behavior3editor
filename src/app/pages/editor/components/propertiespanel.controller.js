@@ -35,11 +35,22 @@
           description : vm.original.description,
           properties  : tine.merge({}, vm.original.properties)
         };
+        quoteStringPropertiesValues(vm.block.properties);
       } else {
         vm.original = false;
         vm.block = false;
       }
-    }
+      
+      function quoteStringPropertiesValues(properties) {
+        for (var key in properties) {
+          var v = properties[key];
+          if (typeof v === "string") {
+            properties[key] = '"' + v + '"';
+          }
+        }  // for
+      }  // quotePropertiesStringValues()
+    }  // _activate()
+    
     function _event(e) {
       setTimeout(function() {$scope.$apply(function() { _activate(); });}, 0);
       

@@ -73,6 +73,18 @@
         delete vm.model[data[0].key];
       }
     }
+    
+    function unquote(str) {
+        var len = str.length;
+        if (len < 2) {
+            return str;
+        }
+        var first = str.charAt(0);
+        if (first !== '"' && first !== "'" || first !== str.charAt(len - 1)) {
+            return str;
+        }
+        return str.slice(1, -1);
+    }
 
     function change() {
       for (var key in vm.model){
@@ -87,10 +99,11 @@
         var value = r.value;
         if (!isNaN(value) && value !== '') {
           value = parseFloat(value);
+        } else {
+          value = unquote(value)
         }
 
         vm.model[r.key] = value;
-        
         if (vm._onChange) {
           vm._onChange($scope);
         }

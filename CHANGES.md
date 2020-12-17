@@ -1,9 +1,11 @@
 ## jinqing 分支
 
 2020.11.09 从 TreeFloderStructure 分支, 有以下更改：
-* 属性值添加引号可强制转成字符串
+* 属性值允许任意json类型，添加引号可强制转成字符串
 	+ 允许全数字的串，不会自动转成数字
 	+ 允许前后有空格，不会自动删空格
+	+ 允许true, false, 日期
+	+ 允许 json 对象
 
 ## TreeFloderStructure分支
 - 修改节点控件为TreeControl，方便折叠，工程较大时方便归类和查找

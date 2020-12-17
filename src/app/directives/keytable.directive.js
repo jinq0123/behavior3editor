@@ -73,18 +73,6 @@
         delete vm.model[data[0].key];
       }
     }
-    
-    function unquote(str) {
-        var len = str.length;
-        if (len < 2) {
-            return str;
-        }
-        var first = str.charAt(0);
-        if (first !== '"' && first !== "'" || first !== str.charAt(len - 1)) {
-            return str;
-        }
-        return str.slice(1, -1);
-    }
 
     function change() {
       for (var key in vm.model){
@@ -97,10 +85,10 @@
         if (! r.key) continue;
 
         var value = r.value;
-        if (!isNaN(value) && value !== '') {
-          value = parseFloat(value);
-        } else {
-          value = unquote(value)
+        try {
+          value = JSON.parse(value);
+        } catch (e) {
+          // keep value as string
         }
 
         vm.model[r.key] = value;

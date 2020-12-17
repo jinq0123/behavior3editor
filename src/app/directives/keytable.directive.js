@@ -64,7 +64,7 @@
     }
 
     function add(key, value, fixed) {
-      vm.rows.push({key:key, value:value, fixed:fixed===true});
+      vm.rows.push({key:key, value:JSON.stringify(value), fixed:fixed===true});
     }
 
     function remove(i) {
